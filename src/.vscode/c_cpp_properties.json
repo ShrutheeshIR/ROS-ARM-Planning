@@ -1,0 +1,31 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/devel/include/**",
+                "/home/olorin/catkin_ws/devel/include/**",
+                "/opt/ros/melodic/include/**",
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/src/motoman_deps/gazebo-pkgs/gazebo_grasp_plugin/include/**",
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/src/motoman_deps/gazebo-pkgs/gazebo_state_plugins/include/**",
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/src/motoman_deps/gazebo-pkgs/gazebo_test_tools/include/**",
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/src/motoman_deps/gazebo-pkgs/gazebo_version_helpers/include/**",
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/src/motoman_deps/gazebo-pkgs/gazebo_world_plugin_loader/include/**",
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/src/motoman_deps/ntl_recognition/motoman_point_cloud/include/**",
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/src/motoman_deps/general-message-pkgs/object_msgs_tools/include/**",
+                "/home/olorin/catkin_ws/src/realsense-ros/realsense2_camera/include/**",
+                "/home/olorin/Desktop/IISc/simulation/catkin_ws/src/realsense_gazebo_plugin/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
