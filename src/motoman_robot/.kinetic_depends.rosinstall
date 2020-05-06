@@ -1,0 +1,12 @@
+- git:
+    local-name: dhand_ros_pkg
+    uri: https://github.com/Nishida-Lab/dhand_ros_pkg
+    version: master
+- git:
+    local-name: general-message-pkgs
+    uri: https://github.com/JenniferBuehler/general-message-pkgs
+    version: master
+- git:
+    local-name: gazebo-pkgs
+    uri: https://github.com/JenniferBuehler/gazebo-pkgs
+    version: master

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<robot name="motoman_motomini" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Arguments -->
+
+  <xacro:arg name="load_grasp_fix" default="false"/>
+
+  <!-- Include Sensors -->
+
+  <xacro:include filename="$(find motoman_description)/urdf/sensor/kinect.urdf.xacro"/>
+  <xacro:include filename="$(find motoman_description)/urdf/sensor/kinect.gazebo.xacro"/>
+  <xacro:include filename="$(find motoman_description)/urdf/tool/gripper.urdf.xacro" />
+  <xacro:include filename="$(find motoman_description)/urdf/mount/cammount.urdf.xacro" />
+
+  <!-- Include gazebo grasp_fix plugin -->
+  <xacro:if value="$(arg load_grasp_fix)">
+    <xacro:include filename="$(find motoman_description)/urdf/tool/gzplugin_grasp_fix.urdf.xacro"/>
+    <xacro:gzplugin_grasp_fix/>
+  </xacro:if>
+
+  <!-- Include Robot -->
+  <xacro:include filename="$(find motoman_description)/robots/motomini/motomini.urdf.xacro"/>
+
+  <!-- add gripper -->
+  <xacro:gripper name="gripper" parent="tool0">
+    <origin xyz="0 0 0.0035" rpy="0 0 0" />
+  </xacro:gripper>
+
+
+  <xacro:mymount name="mymount">
+  </xacro:mymount>
+
+
+
+  <!-- <xacro:mymount name="mount_link"/> -->
+  <!-- <link name="mount_link_x"/>
+
+  Joint -->
+  <!-- <joint name="joint_mount_x" type="fixed">
+    <origin xyz="0.4 0.4 0" rpy="0 0.0 0"/>
+    <parent link="world"/>
+    <child link="mount_link"/>
+    <dynamics damping="0.5" friction="0.0"/>
+  </joint> -->
+
+
+  <!-- <xacro:simple_jp_trans_v0 name="transmission_1_s"
+                              joint_name="joint_mount" actuator_name="motor_1_j"
+                              reduction="300"/> -->
+
+
+  <!-- <joint name="joint_rgb_kinect2" type="fixed"> -->
+    <!-- <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/> -->
+    <!-- <parent link="kinect2_link"/> -->
+    <!-- <child link="kinect2_rgb_optical_frame"/> -->
+  <!-- </joint> -->
+
+  <!-- Gazebo -->
+  <!-- <xacro:kinect_gazebo name="kinect2"/> -->
+
+
+  <!-- <xacro:sensor_d435 parent="mount_link_1">
+      <origin xyz="0.1 0 0.10" rpy="0 0.5 0"/>
+   </xacro:sensor_d435> -->
+  <!-- <link name="kinect2_rgb_optical_frame"/> -->
+
+  <!-- Joint -->
+  <!-- <joint name="joint_kinect2" type="fixed">
+    <origin xyz="0.6 0 0.5" rpy="0 0.9 3.1416"/>
+    <parent link="base_link"/>
+    <child link="kinect2_link"/>
+  </joint>
+
+  <joint name="joint_rgb_kinect2" type="fixed">
+    <origin rpy="${M_PI/2} ${M_PI} ${M_PI/2}"/>
+    <parent link="kinect2_link"/>
+    <child link="kinect2_rgb_optical_frame"/>
+  </joint> -->
+
+  <!-- Gazebo -->
+  <!-- <xacro:gazebo_d435/> -->
+
+
+
+  <!-- <xacro:sensor_d435 parent="${prefix}base_link">
+
+  </xacro:sensor_d435> -->
+
+  <!-- add Kinect V2 -->
+  <!-- Link -->
+
+
+</robot>

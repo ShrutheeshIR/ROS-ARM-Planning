@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="use_sim_time" default="true"/>
+  <arg name="gui" default="false"/>
+  <arg name="headless" default="false"/>
+  <arg name="debug" default="false"/>
+  <arg name="init_pos_x" default="-0.6"/>
+  <arg name="init_pos_y" default="0.0"/>
+  <arg name="init_pos_z" default="1.02"/>
+  <arg name="load_grasp_fix" default="false"/>
+
+
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find motoman_gazebo)/worlds/motomini/motomini_mw_pickplace_only_table.sdf"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+   <!-- <arg name="world_name" value="worlds/empty.world"/> -->
+  </include>
+
+  <include file="$(find motoman_gazebo)/launch/objects/spawn_parts.launch" />   
+
+
+  <arg name="xacro_arguments" default="load_grasp_fix:=$(arg load_grasp_fix)"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find motoman_description)/robots/motomini/motomini_with_gripper_kinectv2.urdf.xacro $(arg xacro_arguments)" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node pkg="gazebo_ros" type="spawn_model" name="spawn_robot" respawn="false" output="screen"
+    args="-param robot_description
+          -urdf
+          -x $(arg init_pos_x)
+          -y $(arg init_pos_y)
+          -z $(arg init_pos_z)
+          -model motomini">
+  </node>
+
+
+  <!-- launch joint state controller -->
+  <!-- <include file="$(find motoman_control)/launch/motomini/motomini_sim_control.launch"/> -->
+  <!-- launch arm and gripper controller -->
+  <!-- <include file="$(find motoman_control)/launch/tool/gripper_sim_control.launch"/> -->
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find motoman_description)/launch/motomini/rviz/motomini_with_kinectv2.rviz" required="true" />
+
+</launch>

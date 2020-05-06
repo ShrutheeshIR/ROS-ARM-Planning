@@ -1,0 +1,8 @@
+prefix=/home/olorin/Desktop/IISc/ROS-ARM-Planning/install
+
+Name: motoman_control
+Description: Description of motoman_control
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: actionlib_msgs
