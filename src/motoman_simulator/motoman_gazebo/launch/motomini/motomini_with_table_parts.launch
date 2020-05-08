@@ -14,7 +14,7 @@
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find motoman_gazebo)/worlds/motomini/motomini_mw_pickplace_only_table.sdf"/>
-    <arg name="paused" value="false"/>
+    <arg name="paused" value="true"/>
     <arg name="use_sim_time" value="true"/>
     <arg name="gui" value="true"/>
     <arg name="headless" value="false"/>
@@ -28,7 +28,7 @@
   <arg name="xacro_arguments" default="load_grasp_fix:=$(arg load_grasp_fix)"/>
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find motoman_description)/robots/motomini/motomini_with_gripper_kinectv2.urdf.xacro $(arg xacro_arguments)" />
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+   <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_robot" respawn="false" output="screen"
     args="-param robot_description
           -urdf
@@ -40,7 +40,7 @@
 
 
   <!-- launch joint state controller -->
-  <!-- <include file="$(find motoman_control)/launch/motomini/motomini_sim_control.launch"/> -->
+  <include file="$(find motoman_control)/launch/motomini/motomini_sim_control.launch"/>
   <!-- launch arm and gripper controller -->
   <!-- <include file="$(find motoman_control)/launch/tool/gripper_sim_control.launch"/> -->
 

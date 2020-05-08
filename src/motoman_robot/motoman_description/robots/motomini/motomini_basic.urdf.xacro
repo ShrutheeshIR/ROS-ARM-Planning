@@ -22,16 +22,6 @@
                                        + link_3_u_volume  + link_4_r_volume
                                        + link_5_b_volume  + link_6_t_volume}" />
 
-    <!-- Add macro -->
-    <xacro:macro name="add_world" params="*origin">
-      <link name="world"/>
-      <joint name="world" type="fixed">
-        <insert_block name="origin"/>
-        <parent link="world"/>
-        <child link="base_link"/>
-      </joint>
-    </xacro:macro>
-
     <!-- link list -->
     <!--
     <xacro:link_v0 link_name="${prefix}base_link" color="yaskawa_blue" />
@@ -67,6 +57,18 @@
         origin_xyz="0 0 0" origin_rpy="0 0 0" color="yaskawa_blue"/>
     <link name="tool0"/>
     <!-- end of link list -->
+
+    <!-- Add macro -->
+    <xacro:macro name="add_world" params="*origin">
+      <link name="world"/>
+      <joint name="world" type="fixed">
+        <insert_block name="origin"/>
+        <parent link="world"/>
+        <child link="base_link"/>
+      </joint>
+    </xacro:macro>
+
+
 
     <!-- joint list -->
     <xacro:joint_v0 joint_name="${prefix}joint_1_s"
