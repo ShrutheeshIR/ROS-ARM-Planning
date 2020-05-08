@@ -4,16 +4,48 @@
 <xacro:include filename="$(find motoman_description)/urdf/sensor/_d435.gazebo.xacro"/>  
 <xacro:macro name="mymount" params="name">
 
+    <link name='mount_base_link'>
+      <inertial>
+      <origin xyz="0 0 0.025" rpy="0 0 0"/>
+        <mass value ="0.5"/>
+        <inertia
+          ixx = "0.001" 
+          ixy="0"
+          ixz="0"
+          iyy="0.001"
+          iyz="0"
+          izz="0.001"
+        />
+        <pose frame=''>0 0 0 0 -0 0</pose>
+      </inertial>
+      <visual name='visual'>
+      <origin xyz="0 0 0.025"/>
+        <geometry>
+          <box size = "0.06 0.06 0.05"/>
+        </geometry>
+        <material name="Gazebo/Black"/>
+      </visual>
+      <collision name='collision'>
+      <origin xyz="0 0 0.025"/>
+        <geometry>
+          <box size = "0.06 0.06 0.05"/>
+        </geometry>
+        <material name="Gazebo/Black"/>
+      </collision>
+      <gazebo>
+        <material>Gazebo/Blue</material>
+        <!-- <material>Gazebo/Black</material> -->
+      </gazebo>
+    </link>
     <joint name="mountjoint" type="fixed" >
-      <axis xyz="0 0 1" />
-      <!-- <insert_block name="origin" /> -->
-      <origin xyz="0.07 0.10 0.28"/>
-      <parent link="base_link" />
-      <child link="mount_link" />
-      <limit upper="-1000000" lower="100000" effort="-1" velocity="10"/>
+      <origin xyz="0 0.2 0"/>
+      <parent link="world" />
+      <child link="mount_base_link" />
     </joint>
 
-    <link name='mount_link'>
+
+
+    <link name='mount_bod'>
       <inertial>
         <mass value ="0.521791"/>
         <inertia
@@ -35,7 +67,7 @@
           <box size="0.042409 0.050234 0.682253"/>
         </geometry>
         <material name="Gazebo/Black"/>
-        <gazebo reference="mount_link">
+        <gazebo reference="mount_bod">
           <material>Gazebo/Black</material>
         </gazebo>        
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -96,6 +128,32 @@
         </surface>
       </collision>
     </link>
+
+    <joint name='bod_base_link' type='revolute'>
+      <parent link="mount_base_link"/>
+      <child link="mount_bod"/>
+      <!-- <pose frame=''>0 0 0 0 -0 0</pose> -->
+      <origin xyz="0 0 0.3811" rpy="0 0 0" />
+      <axis xyz="0 0 1" />
+      <limit upper="1" lower="-1" effort="1" velocity="1"/>
+      <dynamics spring_reference="0" spring_stiffness="0" damping="0"/>      
+
+      <physics>
+        <ode>
+          <limit>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </limit>
+          <suspension>
+            <cfm>0</cfm>
+            <erp>0.2</erp>
+          </suspension>
+        </ode>
+      </physics>
+    </joint>
+
+
+
     <link name='mount_link_1'>
       <inertial>
         <mass value="0.000191546"/>
@@ -112,7 +170,7 @@
       
       <pose frame=''>0.033479 0.001202 -0.001243 0 -0 1.2e-05</pose>
       <visual name='visual'>
-      <origin xyz="0.033479 0.001202 0.2243"/>
+      <!-- <origin xyz="0.033479 0.001202 0.2243"/> -->
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
           <box size="0.02752 0.050234 0.023299"/>
@@ -126,7 +184,7 @@
         <cast_shadows>1</cast_shadows>
       </visual>
       <collision name='collision'>
-      <origin xyz="0.033479 0.001202 0.2243"/>
+      <!-- <origin xyz="0.033479 0.001202 0.2243"/> -->
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose frame=''>0 0 0 0 -0 0</pose>
@@ -180,12 +238,13 @@
         </surface>
       </collision>
     </link>
-    <joint name='link_JOINT_1' type='fixed'>
-      <parent link="mount_link"/>
+    <joint name='link_JOINT_1' type='revolute'>
+      <parent link="mount_bod"/>
       <child link="mount_link_1"/>
+      <origin xyz="0.033479 0.001202 0.2543"/>
       <!-- <pose frame=''>0 0 0 0 -0 0</pose> -->
       <axis xyz="0 1 0" />
-      <limit upper="-1" lower="1" effort="-1" velocity="-1"/>
+      <limit upper="0" lower="-0.61" effort="1" velocity="1"/>
       <dynamics spring_reference="0" spring_stiffness="0" damping="0"/>      
 
       <!-- <axis>
@@ -213,9 +272,41 @@
       </physics>
     </joint>
 
+
+
+    <transmission name="tran1">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="bod_base_link">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+
+    <!-- <transmission name="tran2">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="link_JOINT_1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor1">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission> -->
+
+
+
+
+
   <xacro:sensor_d435 parent="mount_link_1">
-      <origin xyz="0.05 0 0.2043" rpy="0 0.95 0"/>
+      <origin xyz="0.01376 0 0" rpy="0 0.6 0"/>
    </xacro:sensor_d435>
+
+
+
 
 </xacro:macro>
 </robot>
