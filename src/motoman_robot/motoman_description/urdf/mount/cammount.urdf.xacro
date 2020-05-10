@@ -244,7 +244,7 @@
       <origin xyz="0.033479 0.001202 0.2543"/>
       <!-- <pose frame=''>0 0 0 0 -0 0</pose> -->
       <axis xyz="0 1 0" />
-      <limit upper="0" lower="-0.61" effort="1" velocity="1"/>
+      <limit upper="0.61" lower="-0.61" effort="1" velocity="1"/>
       <dynamics spring_reference="0" spring_stiffness="0" damping="0"/>      
 
       <!-- <axis>
@@ -286,7 +286,7 @@
   </transmission>
 
 
-    <!-- <transmission name="tran2">
+    <transmission name="tran2">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="link_JOINT_1">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
@@ -295,7 +295,7 @@
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
-  </transmission> -->
+  </transmission>
 
 
 

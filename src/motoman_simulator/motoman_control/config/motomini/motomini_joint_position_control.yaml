@@ -27,3 +27,12 @@ joint_t_position_controller:
   type: position_controllers/JointPositionController
   joint: joint_6_t
   pid: {p: 10, i: 1, d: 0, i_clamp: 100}
+mountbodcontroller:
+  type: effort_controllers/JointPositionController
+  joint: bod_base_link
+  pid: {p: 100, i: 1, d: 0, i_clamp: 100}  
+mountcameraledgecontroller:
+  type: effort_controllers/JointPositionController
+  joint: link_JOINT_1
+  pid: {p: 100, i: 1, d: 0, i_clamp: 100}
+ 
