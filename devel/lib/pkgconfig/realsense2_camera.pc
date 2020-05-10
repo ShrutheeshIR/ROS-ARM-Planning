@@ -2,7 +2,7 @@ prefix=/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel
 
 Name: realsense2_camera
 Description: Description of realsense2_camera
-Version: 2.2.13
+Version: 3.1.4
 Cflags: -I/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel/include
 Libs: -L${prefix}/lib -lrealsense2_camera
 Requires: message_runtime roscpp sensor_msgs std_msgs nodelet cv_bridge image_transport ddynamic_reconfigure nav_msgs

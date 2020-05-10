@@ -5,4 +5,4 @@ PROJECT_CATKIN_DEPENDS = "message_runtime;roscpp;sensor_msgs;std_msgs;nodelet;cv
 PKG_CONFIG_LIBRARIES_WITH_PREFIX = "-lrealsense2_camera".split(';') if "-lrealsense2_camera" != "" else []
 PROJECT_NAME = "realsense2_camera"
 PROJECT_SPACE_DIR = "/home/olorin/Desktop/IISc/ROS-ARM-Planning/install"
-PROJECT_VERSION = "2.2.13"
+PROJECT_VERSION = "3.1.4"
