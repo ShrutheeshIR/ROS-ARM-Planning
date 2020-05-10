@@ -136,6 +136,7 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_robot/motoman_description/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_simulator/motoman_gazebo/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_simulator/motoman_control/cmake_install.cmake")
+  include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/realsense2_camera/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/realsense_gazebo_plugin/cmake_install.cmake")
 
 endif()

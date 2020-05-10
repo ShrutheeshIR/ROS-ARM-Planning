@@ -1,2 +1,2 @@
-motoman_robot/motoman_description:motoman_robot/motoman_robot:motoman_simulator/motoman_control:motoman_simulator/motoman_gazebo:motoman_simulator/motoman_simulator:realsense_gazebo_plugin
+motoman_robot/motoman_description:motoman_robot/motoman_robot:motoman_simulator/motoman_control:motoman_simulator/motoman_gazebo:motoman_simulator/motoman_simulator:realsense2_camera:realsense_gazebo_plugin
 -DCATKIN_DEVEL_PREFIX=/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel -DCMAKE_INSTALL_PREFIX=/home/olorin/Desktop/IISc/ROS-ARM-Planning/install -G Unix Makefiles
