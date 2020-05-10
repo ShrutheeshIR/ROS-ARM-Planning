@@ -27,8 +27,8 @@
 
   <arg name="xacro_arguments" default="load_grasp_fix:=$(arg load_grasp_fix)"/>
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(find motoman_description)/robots/motomini/motomini_with_gripper_kinectv2.urdf.xacro $(arg xacro_arguments)" />
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
-   <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
+  <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/> -->
+
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_robot" respawn="false" output="screen"
     args="-param robot_description
           -urdf
@@ -38,12 +38,20 @@
           -model motomini">
   </node>
 
+  <rosparam file="$(find motoman_control)/config/motomini/motomini_joint_position_control.yaml" command="load"/>
+  <!-- <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui"/> -->
+  <node name="motomini_controller_spawner" pkg="controller_manager"
+		type="spawner" output="screen"
+		args="joint_state_controller joint_s_position_controller joint_l_position_controller joint_u_position_controller joint_r_position_controller joint_b_position_controller joint_t_position_controller mountbodcontroller mountcameraledgecontroller"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" />
+
+
 
   <!-- launch joint state controller -->
-  <include file="$(find motoman_control)/launch/motomini/motomini_sim_control.launch"/>
+  <!-- <include file="$(find motoman_control)/launch/motomini/motomini_sim_control.launch"/> -->
   <!-- launch arm and gripper controller -->
   <!-- <include file="$(find motoman_control)/launch/tool/gripper_sim_control.launch"/> -->
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find motoman_description)/launch/motomini/rviz/motomini_with_kinectv2.rviz" required="true" />
 
 </launch>
