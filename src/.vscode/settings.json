@@ -3,5 +3,6 @@
         "/home/olorin/Desktop/IISc/simulation/catkin_ws/devel/lib/python2.7/dist-packages",
         "/home/olorin/catkin_ws/devel/lib/python2.7/dist-packages",
         "/opt/ros/melodic/lib/python2.7/dist-packages"
-    ]
+    ],
+    "ros.distro": "melodic"
 }
