@@ -4,10 +4,18 @@
     <param name="arm_part_sdf" textfile="$(find motoman_gazebo)/sdf/bowl/model.sdf" />
 
     <node name="$(anon spawn2)" pkg="gazebo_ros" type="spawn_model" output="screen"
+<<<<<<< HEAD
         args="-sdf -param disk_part_sdf -model disk_part -x 0.28 -y 0.12 -z 1.215" />
     <!-- <node name="$(anon spawn3)" pkg="gazebo_ros" type="spawn_model" output="screen"
         args="-sdf -param t_brace_part_sdf -model t_brace_part -x 0.21 -y 0 -z 1.05" /> -->
     <node name="$(anon spawn4)" pkg="gazebo_ros" type="spawn_model" output="screen"
         args="-sdf -param arm_part_sdf -model arm_part -x 0.15 -y 0.10 -z 1.05 -Y 1.37075" />
+=======
+        args="-sdf -param disk_part_sdf -model disk_part -x 0.28 -y 0.12 -z 50.215" />
+    <!-- <node name="$(anon spawn3)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param t_brace_part_sdf -model t_brace_part -x 0.21 -y 0 -z 1.05" /> -->
+    <node name="$(anon spawn4)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param arm_part_sdf -model arm_part -x 0.15 -y 0.10 -z 1.05 -Y 1.57075" />
+>>>>>>> d2fa90123992a6f2e50f2a3d8fb9f59ff2c98d5c
 
 </launch>
