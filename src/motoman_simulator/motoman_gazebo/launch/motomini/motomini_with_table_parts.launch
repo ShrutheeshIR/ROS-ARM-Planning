@@ -46,7 +46,7 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" />
 
-
+  <node pkg="tf2_pose" type="tf_broadcaster.py" name="listener" output="screen"/>
 
   <!-- launch joint state controller -->
   <!-- <include file="$(find motoman_control)/launch/motomini/motomini_sim_control.launch"/> -->
