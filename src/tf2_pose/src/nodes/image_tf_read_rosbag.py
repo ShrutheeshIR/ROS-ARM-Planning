@@ -19,7 +19,7 @@ def main():
     """
     rotpc = np.array([[1,0,0], [0,-1,0], [0,0,-1]])
     args = {}
-    bag_file = '/home/olorin/Desktop/IISc/ROS-ARM-Planning/2020-05-12-01-40-05.bag'
+    bag_file = '/home/olorin/Desktop/IISc/ROS-ARM-Planning/2020-05-13-20-22-51.bag'
     depth_image_topic = '/camera/depth/image_raw'
     color_image_topic = '/camera/color/image_raw'
     tftopic = '/cameraposetransform'
@@ -38,7 +38,7 @@ def main():
     print("ASJH")
     count = 0
     allpcs = []
-    for index, (topic, msg, t) in enumerate(bag.read_messages(topics=[depth_image_topic,color_image_topic, tftopic])):
+    for index, (topic, msg, t) in enumerate(bag.read_messages(topics=[color_image_topic,depth_image_topic, tftopic])):
         # print("ADHASGd")
         # print(topic, t)
         if(topic=='/cameraposetransform'):
@@ -56,88 +56,103 @@ def main():
             # print(transmatrix)
             mbsst = r.as_rotvec()
 
+        if(topic=='/camera/color/image_raw'):
+            cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough")
+            print(type(cv_img))
+            print(cv_img.shape)
+            
+            cv2.imwrite('/home/olorin/Desktop/depthimgs/color-%06d.jpg'%(count), cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB))
+            count+=1
         if(topic=='/camera/depth/image_raw'):
             cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough").astype(np.float32)
-            md = np.max(cv_img)
-            cv_img[cv_img>(md/5)]=0
+            print(type(cv_img))
+            print(cv_img.shape)
+            np.save('/home/olorin/Desktop/depthimgs/depth-%06d.npy'%(count), cv_img)
+            # cv2.imwrite('/home/olorin/Desktop/depthimgs/depth-%06d.png'%(count), cv2.cvtColor(cv_img, cv2.COLOR_BGR2RGB))
+            count+=1
 
-            np.save('/home/olorin/Desktop/depthimgs/%06d.npy'%(count), cv_img)
-            np.savetxt('/home/olorin/Desktop/depthimgs/%06d.txt'%(count), transmatrix)
-            if(count%10==0 and count>75):
-                cv2.imshow('IMAG', cv_img/1000 )
-                cv2.waitKey(0)
-                cv2.destroyAllWindows()
-                dept = cv2.rgbd.depthTo3d(cv_img/1000,cam_intr)
-                # print(transmatrix)
-                print(r.as_euler('xyz'))
-                r = R.from_dcm(np.linalg.inv(transmatrix[:3, :3]))
-                # print(dept.shape)
-                newdept = np.reshape(dept, (720*1280,3))
-                indicex = np.isnan(newdept).any(axis=1)
-                pcpnts = newdept[indicex==False]
-                # print(newdept)
-                r2 = R.from_dcm(mychangeR)
-                newdept2 = r.apply(pcpnts)
-                # print(newdept2)
-                newdept2 = newdept2-transmatrix[:3,3]
-                # newdept2 = r2.apply(newdept2)
-                # newdept2 = newdept[..., np.newaxis]
-                point_cloud = o3d.geometry.PointCloud()
-                point_cloud.points = o3d.utility.Vector3dVector(newdept2)
-                # print(transmatrix)
-                point_cloud.rotate(rotpc)
-                # print(np.asarray(point_cloud.points))
-                # print(transmatrix[:3,:3])
-                # point_cloud.rotate(transmatrix[:3,:3])
-                # point_cloud.translate(transmatrix[:3,3])
-                # point_cloud.transform(transmatrix)
-                allpcs.append(point_cloud)
-                # o3d.visualization.draw_geometries(allpcs)
+        # if(topic=='/camera/depth/image_raw'):
+        #     cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough").astype(np.float32)
+        #     md = np.max(cv_img)
+        #     cv_img[cv_img>(md/5)]=0
+
+        #     np.save('/home/olorin/Desktop/depthimgs/%06d.npy'%(count), cv_img)
+        #     np.savetxt('/home/olorin/Desktop/depthimgs/%06d.txt'%(count), transmatrix)
+        #     if(count%10==0 and count>75):
+        #         cv2.imshow('IMAG', cv_img/1000 )
+        #         cv2.waitKey(0)
+        #         cv2.destroyAllWindows()
+        #         dept = cv2.rgbd.depthTo3d(cv_img/1000,cam_intr)
+        #         # print(transmatrix)
+        #         print(r.as_euler('xyz'))
+        #         r = R.from_dcm(np.linalg.inv(transmatrix[:3, :3]))
+        #         # print(dept.shape)
+        #         newdept = np.reshape(dept, (720*1280,3))
+        #         indicex = np.isnan(newdept).any(axis=1)
+        #         pcpnts = newdept[indicex==False]
+        #         # print(newdept)
+        #         r2 = R.from_dcm(mychangeR)
+        #         newdept2 = r.apply(pcpnts)
+        #         # print(newdept2)
+        #         newdept2 = newdept2-transmatrix[:3,3]
+        #         # newdept2 = r2.apply(newdept2)
+        #         # newdept2 = newdept[..., np.newaxis]
+        #         point_cloud = o3d.geometry.PointCloud()
+        #         point_cloud.points = o3d.utility.Vector3dVector(newdept2)
+        #         # print(transmatrix)
+        #         point_cloud.rotate(rotpc)
+        #         # print(np.asarray(point_cloud.points))
+        #         # print(transmatrix[:3,:3])
+        #         # point_cloud.rotate(transmatrix[:3,:3])
+        #         # point_cloud.translate(transmatrix[:3,3])
+        #         # point_cloud.transform(transmatrix)
+        #         allpcs.append(point_cloud)
+        #         # o3d.visualization.draw_geometries(allpcs)
 
                 
-            # print(transmatrix)
-            # print(count)
-            # # print(mbsst)
-            # # depthim = cv_img/1000
-            # cv2.imshow('IMAG', cv_img/1000 )
-            # cv2.waitKey(0)
-            # cv2.destroyAllWindows()
-            # # # print(cv_img)
-            # dept = cv2.rgbd.depthTo3d(cv_img/1000,cam_intr)
+        #     # print(transmatrix)
+        #     # print(count)
+        #     # # print(mbsst)
+        #     # # depthim = cv_img/1000
+        #     # cv2.imshow('IMAG', cv_img/1000 )
+        #     # cv2.waitKey(0)
+        #     # cv2.destroyAllWindows()
+        #     # # # print(cv_img)
+        #     # dept = cv2.rgbd.depthTo3d(cv_img/1000,cam_intr)
             
-            # newdept = np.reshape(dept, (720*1280,3))
+        #     # newdept = np.reshape(dept, (720*1280,3))
 
-            # indicex = np.isnan(newdept).any(axis=1)
-            # pcpnts = newdept[indicex==False]
-            # # pcpnts = 
-            # # print(pcpnts)
+        #     # indicex = np.isnan(newdept).any(axis=1)
+        #     # pcpnts = newdept[indicex==False]
+        #     # # pcpnts = 
+        #     # # print(pcpnts)
 
-            # point_cloud1 = o3d.geometry.PointCloud()
-            # point_cloud1.points = o3d.utility.Vector3dVector(pcpnts)
-            # # transmatrix[:3, :3] = np.linalg.inv(transmatrix[:3, :3])
-            # # transmatrix[:3, 3] = -1*transmatrix[:3, 3]
+        #     # point_cloud1 = o3d.geometry.PointCloud()
+        #     # point_cloud1.points = o3d.utility.Vector3dVector(pcpnts)
+        #     # # transmatrix[:3, :3] = np.linalg.inv(transmatrix[:3, :3])
+        #     # # transmatrix[:3, 3] = -1*transmatrix[:3, 3]
 
-            # # point_cloud.transform(transmatrix)
-            # # print(dir(point_cloud))
-            # # # kjg
-            # # point_cloud1.rotate(rotpc)
-            # # o3d.visualization.draw_geometries([point_cloud])
+        #     # # point_cloud.transform(transmatrix)
+        #     # # print(dir(point_cloud))
+        #     # # # kjg
+        #     # # point_cloud1.rotate(rotpc)
+        #     # # o3d.visualization.draw_geometries([point_cloud])
 
 
-            # point_cloud = o3d.geometry.PointCloud()
-            # point_cloud.points = o3d.utility.Vector3dVector(pcpnts)
-            # transmatrix[:3, :3] = np.linalg.inv(transmatrix[:3, :3])
-            # transmatrix[:3, 3] = -1*transmatrix[:3, 3]
+        #     # point_cloud = o3d.geometry.PointCloud()
+        #     # point_cloud.points = o3d.utility.Vector3dVector(pcpnts)
+        #     # transmatrix[:3, :3] = np.linalg.inv(transmatrix[:3, :3])
+        #     # transmatrix[:3, 3] = -1*transmatrix[:3, 3]
 
-            # point_cloud.transform(transmatrix)
-            # # print(dir(point_cloud))
-            # # # kjg
-            # # point_cloud.rotate(rotpc)
-            # o3d.visualization.draw_geometries([point_cloud1, point_cloud])
+        #     # point_cloud.transform(transmatrix)
+        #     # # print(dir(point_cloud))
+        #     # # # kjg
+        #     # # point_cloud.rotate(rotpc)
+        #     # o3d.visualization.draw_geometries([point_cloud1, point_cloud])
 
             
 
-            count += 1
+        #     count += 1
 
         # jhh
             # cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough").astype(np.float32)
