@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel/lib/motoman_control/motoman_control_node"
-  "/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel/lib/motoman_control/motoman_control_node.pdb"
   "CMakeFiles/motoman_control_node.dir/src/motoman_control_node.cpp.o"
+  "/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel/lib/motoman_control/motoman_control_node.pdb"
+  "/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel/lib/motoman_control/motoman_control_node"
 )
 
 # Per-language clean rules from dependency scanning.

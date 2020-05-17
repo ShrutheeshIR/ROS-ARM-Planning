@@ -1,65 +1,55 @@
-Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Determining if the pthread_create exist failed with the following output:
 Change Dir: /home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_f09fc/fast && /usr/bin/make -f CMakeFiles/cmTC_f09fc.dir/build.make CMakeFiles/cmTC_f09fc.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_8f799/fast"
+/usr/bin/make -f CMakeFiles/cmTC_8f799.dir/build.make CMakeFiles/cmTC_8f799.dir/build
 make[1]: Entering directory '/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_f09fc.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_f09fc.dir/src.c.o   -c /home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_f09fc
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f09fc.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    -rdynamic CMakeFiles/cmTC_f09fc.dir/src.c.o  -o cmTC_f09fc 
-CMakeFiles/cmTC_f09fc.dir/src.c.o: In function `main':
-src.c:(.text+0x3e): undefined reference to `pthread_create'
-src.c:(.text+0x4a): undefined reference to `pthread_detach'
-src.c:(.text+0x56): undefined reference to `pthread_cancel'
-src.c:(.text+0x67): undefined reference to `pthread_join'
-src.c:(.text+0x7b): undefined reference to `pthread_atfork'
+Building C object CMakeFiles/cmTC_8f799.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_8f799.dir/CheckSymbolExists.c.o   -c /home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_8f799
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8f799.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_8f799.dir/CheckSymbolExists.c.o  -o cmTC_8f799 
+CMakeFiles/cmTC_8f799.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_f09fc.dir/build.make:103: recipe for target 'cmTC_f09fc' failed
-make[1]: *** [cmTC_f09fc] Error 1
+CMakeFiles/cmTC_8f799.dir/build.make:97: recipe for target 'cmTC_8f799' failed
+make[1]: *** [cmTC_8f799] Error 1
 make[1]: Leaving directory '/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp'
-Makefile:138: recipe for target 'cmTC_f09fc/fast' failed
-make: *** [cmTC_f09fc/fast] Error 2
+Makefile:126: recipe for target 'cmTC_8f799/fast' failed
+make: *** [cmTC_8f799/fast] Error 2
 
-
-Source file was:
+File /home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
 #include <pthread.h>
 
-void* test_func(void* data)
+int main(int argc, char** argv)
 {
-  return data;
-}
-
-int main(void)
-{
-  pthread_t thread;
-  pthread_create(&thread, NULL, test_func, NULL);
-  pthread_detach(thread);
-  pthread_cancel(thread);
-  pthread_join(thread, NULL);
-  pthread_atfork(NULL, NULL, NULL);
-  pthread_exit(NULL);
-
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
   return 0;
+#endif
 }
 
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_b6112/fast && /usr/bin/make -f CMakeFiles/cmTC_b6112.dir/build.make CMakeFiles/cmTC_b6112.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_f1e21/fast"
+/usr/bin/make -f CMakeFiles/cmTC_f1e21.dir/build.make CMakeFiles/cmTC_f1e21.dir/build
 make[1]: Entering directory '/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_b6112.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_b6112.dir/CheckFunctionExists.c.o   -c /usr/local/share/cmake-3.17/Modules/CheckFunctionExists.c
-Linking C executable cmTC_b6112
-/usr/local/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b6112.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_b6112.dir/CheckFunctionExists.c.o  -o cmTC_b6112  -lpthreads 
+Building C object CMakeFiles/cmTC_f1e21.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_f1e21.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_f1e21
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f1e21.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_f1e21.dir/CheckFunctionExists.c.o  -o cmTC_f1e21 -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_b6112.dir/build.make:103: recipe for target 'cmTC_b6112' failed
-make[1]: *** [cmTC_b6112] Error 1
+CMakeFiles/cmTC_f1e21.dir/build.make:97: recipe for target 'cmTC_f1e21' failed
+make[1]: *** [cmTC_f1e21] Error 1
 make[1]: Leaving directory '/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/CMakeFiles/CMakeTmp'
-Makefile:138: recipe for target 'cmTC_b6112/fast' failed
-make: *** [cmTC_b6112/fast] Error 2
-
+Makefile:126: recipe for target 'cmTC_f1e21/fast' failed
+make: *** [cmTC_f1e21/fast] Error 2
 
 

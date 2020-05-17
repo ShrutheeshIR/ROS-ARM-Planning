@@ -1,0 +1,8 @@
+prefix=/home/olorin/Desktop/IISc/ROS-ARM-Planning/install
+
+Name: tf2_pose
+Description: Description of tf2_pose
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

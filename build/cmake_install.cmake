@@ -131,12 +131,18 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/gtest/cmake_install.cmake")
+  include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_moveit/motoman_moveit/cmake_install.cmake")
+  include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_moveit/motoman_moveit_config/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_robot/motoman_robot/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_simulator/motoman_simulator/cmake_install.cmake")
+  include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/realsense2_description/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_robot/motoman_description/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_simulator/motoman_gazebo/cmake_install.cmake")
+  include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_moveit/motoman_moveit_bringup/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_simulator/motoman_control/cmake_install.cmake")
   include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/realsense_gazebo_plugin/cmake_install.cmake")
+  include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/tf2_pose/cmake_install.cmake")
+  include("/home/olorin/Desktop/IISc/ROS-ARM-Planning/build/motoman_moveit/motoman_moveit_config_motomini/cmake_install.cmake")
 
 endif()
 

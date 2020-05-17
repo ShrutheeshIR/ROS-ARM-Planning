@@ -1,0 +1,8 @@
+prefix=/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel
+
+Name: motoman_moveit_config
+Description: Description of motoman_moveit_config
+Version: 0.2.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

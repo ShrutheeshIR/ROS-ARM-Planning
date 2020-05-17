@@ -30,10 +30,10 @@ if __name__ == '__main__':
 
     transformer = rospy.Publisher('/cameraposetransform', geometry_msgs.msg.Transform,queue_size=1)
 
-    rate = rospy.Rate(10.0)
+    rate = rospy.Rate(50.0)
     while not rospy.is_shutdown():
         try:
-            (trans,rot) = listener.lookupTransform('/world', '/camera_depth_frame', rospy.Time(0))
+            (trans,rot) = listener.lookupTransform('/world', '/camera_depth_optical_frame', rospy.Time(0))
             msg1 = geometry_msgs.msg.Transform()
             msg1.translation.x = trans[0]
             msg1.translation.y = trans[1]

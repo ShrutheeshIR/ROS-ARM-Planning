@@ -1,0 +1,8 @@
+prefix=/home/olorin/Desktop/IISc/ROS-ARM-Planning/install
+
+Name: motoman_moveit_config_motomini
+Description: Description of motoman_moveit_config_motomini
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

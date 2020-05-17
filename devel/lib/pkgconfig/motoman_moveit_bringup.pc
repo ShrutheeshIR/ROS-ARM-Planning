@@ -1,0 +1,8 @@
+prefix=/home/olorin/Desktop/IISc/ROS-ARM-Planning/devel
+
+Name: motoman_moveit_bringup
+Description: Description of motoman_moveit_bringup
+Version: 1.9.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

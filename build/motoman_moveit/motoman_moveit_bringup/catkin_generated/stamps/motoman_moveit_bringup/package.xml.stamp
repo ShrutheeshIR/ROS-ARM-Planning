@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>motoman_moveit_bringup</name>
+  <version>1.9.0</version>
+  <description>The motoman_moveit_bringup package</description>
+
+  <maintainer email="groadpg@gmail.com">RyodoTanaka</maintainer>
+  <maintainer email="ry0@todo.todo">ry0</maintainer>
+
+  <license>BSD</license>
+  <url type="repository">http://github.com/Nishida-Lab/motoman_moveit</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roslaunch</depend>
+  <depend>rospy</depend>
+  <depend>moveit_commander</depend>
+  <depend>roscpp</depend>
+  <depend>moveit_msgs</depend>
+  <depend>boost</depend>
+  <depend>eigen</depend>
+  <depend>cmake_modules</depend>
+  <depend>moveit_ros_planning_interface</depend>
+  <depend>moveit_ros_perception</depend>
+  <depend>pluginlib</depend>
+  <depend>moveit_core</depend>
+  <depend>warehouse_ros</depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>motoman_moveit_config</exec_depend>
+  <exec_depend>motoman_moveit_config_motomini</exec_depend>
+  <exec_depend>motoman_description</exec_depend>
+
+</package>
