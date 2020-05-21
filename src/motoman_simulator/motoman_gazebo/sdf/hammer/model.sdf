@@ -25,6 +25,20 @@
       </collision>
 -->
       <collision name="collision">
+      <inertial>
+      <mass>0.5</mass>
+      <inertia>
+        <ixx>0.000250308</ixx>
+        <ixy>0.0</ixy>
+        <ixz>0.0</ixz>
+        <iyy>0.000250308</iyy>
+        <iyz>0.0</iyz>
+        <izz>0.0004802</izz>
+      </inertia>      
+      <interia>
+
+      </interia>
+      </inertial>
         <geometry>
           <mesh>
             <uri>model://hammer/meshes/hammer.dae</uri>

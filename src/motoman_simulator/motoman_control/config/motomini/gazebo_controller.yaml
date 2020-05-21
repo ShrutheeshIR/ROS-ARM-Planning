@@ -1,0 +1,9 @@
+gazebo_ros_control:
+  pid_gains:
+    joint_1_s: {p: 1.0, i: 0.01, d: 0.1}
+    joint_2_l: {p: 1.0, i: 0.01, d: 0.1}
+    joint_3_u: {p: 1.0, i: 0.01, d: 0.1}
+    joint_4_r: {p: 1.0, i: 0.01, d: 0.1}
+    joint_5_b: {p: 1.0, i: 0.01, d: 0.1}
+    joint_6_t: {p: 1.0, i: 0.01, d: 0.1}
+    

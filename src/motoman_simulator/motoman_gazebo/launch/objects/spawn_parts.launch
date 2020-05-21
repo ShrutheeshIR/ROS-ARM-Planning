@@ -1,10 +1,34 @@
 <launch>
-    <param name="disk_part_sdf" textfile="$(find motoman_gazebo)/sdf/bowl/model.sdf" />
+    <param name="bowl_sdf" textfile="$(find motoman_gazebo)/sdf/bowl/model.sdf" />
     <!-- <param name="t_brace_part_sdf" textfile="$(find motoman_gazebo)/sdf/t_brace_part/model.sdf" /> -->
-    <param name="arm_part_sdf" textfile="$(find motoman_gazebo)/sdf/hammer/model.sdf" />
+    <param name="hammer_sdf" textfile="$(find motoman_gazebo)/sdf/hammer/model.sdf" />
+    <param name="bottle_sdf" textfile="$(find motoman_gazebo)/sdf/bottle/model.sdf" />
+    <!-- <param name="mouse_sdf" textfile="$(find motoman_gazebo)/sdf/mouse/model.sdf" /> -->
+    <param name="torch_sdf" textfile="$(find motoman_gazebo)/sdf/torch/model.sdf" />
+    <param name="mug_sdf" textfile="$(find motoman_gazebo)/sdf/mug/model.sdf" />
 
-    <node name="$(anon spawn2)" pkg="gazebo_ros" type="spawn_model" output="screen"
-        args="-sdf -param disk_part_sdf -model disk_part -x -0.08 -y 0.12 -z 1.215" />
+    <node name="$(anon spawnbowl)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param bowl_sdf -model bowl -x -0.12 -y 0.12 -z 1.075" />
+
+    <node name="$(anon spawnhammer)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param hammer_sdf -model hammer -x 0.12 -y 0.12 -z 1.075" />
+
+
+    <!-- <node name="$(anon spawn2)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param hammer_sdf -model disk_part -x -0.10 -y 0.12 -z 1.075" /> -->
+
+    <!-- <node name="$(anon spawnbottle)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param bottle_sdf -model bottle -x -0.12 -y 0.10 -z 1.075" /> -->
+
+    <!-- <node name="$(anon spawnmouse)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param mouse_sdf -model mouse -x 0.12 -y 0.10 -z 1.075" /> -->
+
+    <node name="$(anon spawntorch)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param torch_sdf -model torch -x -0.12 -y -0.02 -z 1.075" />
+
+    <node name="$(anon spawnmug)" pkg="gazebo_ros" type="spawn_model" output="screen"
+        args="-sdf -param mug_sdf -model mug -x -0.07 -y 0.23 -z 1.075" />
+
     <!-- <node name="$(anon spawn3)" pkg="gazebo_ros" type="spawn_model" output="screen"
         args="-sdf -param t_brace_part_sdf -model t_brace_part -x 0.21 -y 0 -z 1.05" /> -->
     <!-- <node name="$(anon spawn4)" pkg="gazebo_ros" type="spawn_model" output="screen"

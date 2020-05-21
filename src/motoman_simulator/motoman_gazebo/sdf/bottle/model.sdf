@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="mug">
+    <link name="link">
+      <inertial>
+        <mass>0.08</mass>
+	  <inertia>
+	    <ixx>0.000250308</ixx>
+	    <ixy>0.0</ixy>
+	    <ixz>0.0</ixz>
+	    <iyy>0.00250308</iyy>
+	    <iyz>0.0</iyz>
+	    <izz>0.000250308</izz>
+	  </inertia>
+      </inertial>
+      <collision name="collision">
+        <geometry>
+            <uri>model://bottle/meshes/model.dae</uri>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://bottle/meshes/model.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

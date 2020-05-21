@@ -11,36 +11,65 @@ import numpy as np
 import cv2
 import os
 
+import message_filters
+from sensor_msgs.msg import Image, CameraInfo
 
-def callback(data, bridge):
-    try:
-        cv_image = bridge.imgmsg_to_cv2(data, desired_encoding="passthrough").astype(np.float32)
-    except CvBridgeError as e:
-        print(e)
+bridge = CvBridge()
+colimg = 0
+depimg = 0
 
-    (rows,cols) = cv_image.shape
-    print(rows, cols)
-        
+def callback(col_im, dep_im, campose):
+    global colimg
+    global depimg
+    cv_img_col = bridge.imgmsg_to_cv2(col_im, desired_encoding="bgr8")
+    cv_img_dep = bridge.imgmsg_to_cv2(dep_im, desired_encoding="passthrough").astype(np.float32)
+    colimg+=1
+    if(colimg%5==0):
+        cv2.imwrite('/home/olorin/Desktop/depthimgs/imags/color-%d.jpg'%(colimg), cv_img_col)
+    depimg+=1
+    if(depimg%5==0):
+        cv_img_dep[cv_img_dep>1000] = 0
+        cv2.imwrite('/home/olorin/Desktop/depthimgs/imags/depth-%d.png'%(depimg), 20*cv_img_dep.astype(np.uint16))
 
-def listener():
-    bridge = CvBridge()
-    listener = tf.TransformListener()
-    image_sub = rospy.Subscriber("/camera/depth/image_raw",Image,callback, bridge)
-    try:
-        (trans,rot) = listener.lookupTransform('/world', '/camera_color_frame', rospy.Time(0))
-        print(trans, rot)        
-    except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
-        print("NO")
+    # print(cv_img_dep.shape)
+    # print(campose)
+  # Solve all of perception here...
+
+# rospy.init_node('imagewrite')
+# depth_image_topic = '/camera/depth/image_raw'
+# color_image_topic = '/camera/color/image_raw'
+# tftopic = '/cameraposetransform'
+
+# color_image_sub = message_filters.Subscriber(color_image_topic, Image)
+# depth_image_sub = message_filters.Subscriber(depth_image_topic, Image)
 
 
 
+# ts = message_filters.TimeSynchronizer([color_image_sub, depth_image_sub], 10)
+# ts.registerCallback(callback)
+# rospy.spin()
+
+def image_callback(msg):
+    cv_img = bridge.imgmsg_to_cv2(msg, desired_encoding="passthrough").astype(np.float32)
+    print(cv_img.shape)
 
 
-if __name__ == '__main__':
-    rospy.init_node('tf_listener')
-    listener()
-    try:
-        rospy.spin()
-    except KeyboardInterrupt:
-        print("Shutting down")
+def main():
+    rospy.init_node('image_listener')
+    color_image_topic = '/camera/color/image_raw'
+    depth_image_topic = '/camera/depth/image_raw'
+    tftopic = '/cameraposetransform'
+    color_image_sub = message_filters.Subscriber(color_image_topic, Image)
+    depth_image_sub = message_filters.Subscriber(depth_image_topic, Image)
+    camera_pose_sub = message_filters.Subscriber(tftopic, geometry_msgs.msg.Transform)
+    
+    ts = message_filters.ApproximateTimeSynchronizer([color_image_sub, depth_image_sub, camera_pose_sub], 10, 0.1, allow_headerless=True)
+    ts.registerCallback(callback)
 
+    # Set up your subscriber and define its callback
+    # rospy.Subscriber(depth_image_topic, Image, image_callback)
+    # Spin until ctrl + c
+    rospy.spin()
+
+if __name__=='__main__':
+    main()

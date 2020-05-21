@@ -1,8 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:sensor="http://playerstage.sourceforge.net/gazebo/xmlschema/#sensor"
-       xmlns:controller="http://playerstage.sourceforge.net/gazebo/xmlschema/#controller"
-       xmlns:interface="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
-       xmlns:xacro="http://ros.org/wiki/xacro">
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
 
   <xacro:macro name="gripper_gazebo" params="name">
   
@@ -11,24 +8,49 @@
       <turnGravityOff>false</turnGravityOff>
       <selfCollide>false</selfCollide>
     </gazebo>
-    
-    <gazebo reference="${name}_finger_l_link">
+
+    <gazebo reference="${name}_finger_link_r">
       <material>Gazebo/Black</material>
       <turnGravityOff>false</turnGravityOff>
       <selfCollide>true</selfCollide>
       <mu1>1.0</mu1>
       <mu2>1.0</mu2>
+      <minDepth>0.001</minDepth>
       <maxContacts>100</maxContacts>
+      <sensor name="finger_r_contact" type="contact">
+        <always_on>1</always_on>
+        <contact>
+          <collision>gripper_finger_link_r_collision</collision>
+        </contact>
+        <plugin name="gripper_bumper_r" filename="libgazebo_ros_bumper.so">
+          <alwaysOn>true</alwaysOn>
+          <bumperTopicName>gripper_finger_link_r_collision</bumperTopicName>
+          <frameName>gripper_finger_r_link</frameName>
+        </plugin> 
+      </sensor>     
+    </gazebo>
+
+    <gazebo reference="${name}_finger_link_l">
+      <material>Gazebo/Black</material>
+      <turnGravityOff>false</turnGravityOff>
+      <selfCollide>true</selfCollide>
+      <mu1>1.0</mu1>
+      <mu2>1.0</mu2>
+      <minDepth>0.001</minDepth>
+      <maxContacts>100</maxContacts>
+      <sensor name="finger_l_contact" type="contact">
+        <always_on>1</always_on>
+        <contact>
+          <collision>gripper_finger_link_l_collision</collision>
+        </contact>
+        <plugin name="gripper_bumper_l" filename="libgazebo_ros_bumper.so">
+          <alwaysOn>true</alwaysOn>
+          <bumperTopicName>gripper_finger_link_l_collision</bumperTopicName>
+          <frameName>gripper_finger_l_link</frameName>
+        </plugin> 
+      </sensor>     
     </gazebo>
 	
-    <gazebo reference="${name}_finger_r_link">
-      <material>Gazebo/Black</material>
-      <turnGravityOff>false</turnGravityOff>
-      <selfCollide>true</selfCollide>
-      <mu1>1.0</mu1>
-      <mu2>1.0</mu2>
-      <maxContacts>100</maxContacts>
-    </gazebo>
 	
   </xacro:macro>
 

@@ -6,11 +6,11 @@
   <!-- load the controllers -->
   <node name="motomini_controller_spawner2" pkg="controller_manager"
 		type="spawner" output="screen"
-		args="motomini_controller"/>
+		args="joint_state_controller Arm_controller Mount_controller Hand_controller"/>
 
   <!-- convert joint states to TF transforms for rviz, etc -->
-  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"
 		respawn="false" output="screen">
-  </node> -->
+  </node>
 
 </launch>

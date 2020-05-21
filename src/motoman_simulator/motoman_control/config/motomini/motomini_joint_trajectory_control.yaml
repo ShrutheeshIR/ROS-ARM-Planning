@@ -3,7 +3,7 @@ joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50
   
-motomini_controller:
+Arm_controller:
   type: position_controllers/JointTrajectoryController
   joints:
     - joint_1_s
@@ -26,3 +26,14 @@ motomini_controller:
       goal: *goal_pos_constraint
     joint_6_t:
       goal: *goal_pos_constraint
+Mount_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - bod_base_link
+    - link_JOINT_1
+Hand_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - gripper_finger_joint_l
+    - gripper_finger_joint_r
+

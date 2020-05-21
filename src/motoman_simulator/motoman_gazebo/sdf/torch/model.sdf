@@ -1,0 +1,35 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="torch">
+    <link name="link">
+      <inertial>
+      <pose>0.0 0.00000 0.0 0 0 0</pose>
+        <mass>0.1</mass>
+	  <!-- <inertia>
+	    <ixx>0.000250308</ixx>
+	    <ixy>0.0</ixy>
+	    <ixz>0.0</ixz>
+	    <iyy>0.000250308</iyy>
+	    <iyz>0.0</iyz>
+	    <izz>0.0004802</izz>
+	  </inertia> -->
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>/home/olorin/Desktop/IISc/ROS-ARM-Planning/src/motoman_simulator/motoman_gazebo/sdf/torch/meshes/model.dae</uri>
+            <scale>0.02 0.02 0.02</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>/home/olorin/Desktop/IISc/ROS-ARM-Planning/src/motoman_simulator/motoman_gazebo/sdf/torch/meshes/model.dae</uri>
+            <scale>0.02 0.02 0.02</scale>
+         </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>

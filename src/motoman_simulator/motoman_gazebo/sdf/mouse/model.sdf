@@ -1,0 +1,34 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="mug">
+    <link name="link">
+      <inertial>
+        <mass>0.16</mass>
+	  <!-- <inertia>
+	    <ixx>0.000250308</ixx>
+	    <ixy>0.0</ixy>
+	    <ixz>0.0</ixz>
+	    <iyy>0.00250308</iyy>
+	    <iyz>0.0</iyz>
+	    <izz>0.000250308</izz>
+	  </inertia> -->
+      </inertial>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>/home/olorin/Desktop/IISc/ROS-ARM-Planning/src/motoman_simulator/motoman_gazebo/sdf/mouse/meshes/model.dae</uri>
+            <scale>0.02 0.02 0.02</scale>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>/home/olorin/Desktop/IISc/ROS-ARM-Planning/src/motoman_simulator/motoman_gazebo/sdf/mouse/meshes/model.dae</uri>
+            <scale>0.02 0.02 0.02</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+  </model>
+</sdf>
