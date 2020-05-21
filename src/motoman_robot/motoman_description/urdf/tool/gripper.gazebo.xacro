@@ -12,7 +12,7 @@
       <selfCollide>false</selfCollide>
     </gazebo>
     
-    <gazebo reference="${name}_finger_l_link">
+    <gazebo reference="${name}_finger_link_l">
       <material>Gazebo/Black</material>
       <turnGravityOff>false</turnGravityOff>
       <selfCollide>true</selfCollide>
@@ -21,7 +21,7 @@
       <maxContacts>100</maxContacts>
     </gazebo>
 	
-    <gazebo reference="${name}_finger_r_link">
+    <gazebo reference="${name}_finger_link_r">
       <material>Gazebo/Black</material>
       <turnGravityOff>false</turnGravityOff>
       <selfCollide>true</selfCollide>

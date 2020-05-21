@@ -61,9 +61,9 @@
       <inertial>
 	<origin xyz="${origin_xyz}" rpy="${origin_rpy}"/>
         <mass value="${mass}"/>
-        <inertia ixx="${(mass*((width/2)*(width/2)+(height/2)*(height/2)))/3}" ixy="0" ixz="0"
-				 iyy="${(mass*((depth/2)*(depth/2)+(height/2)*(height/2)))/3}" iyz="0"
-				 izz="${(mass*((depth/2)*(depth/2)+(width/2)*(width/2)))/3}" />
+        <inertia ixx="${(mass*((width/2)*(width/2)+(height/2)*(height/2)))/12}" ixy="0" ixz="0"
+				 iyy="${(mass*((depth/2)*(depth/2)+(height/2)*(height/2)))/12}" iyz="0"
+				 izz="${(mass*((depth/2)*(depth/2)+(width/2)*(width/2)))/12}" />
       </inertial>
     </link>
   </xacro:macro>
@@ -76,6 +76,7 @@
       <child link="${child_link_name}"/>
       <origin xyz="${origin_xyz}" rpy="${origin_rpy}" />
       <axis xyz="${axis_xyz}" />
+      <dynamics damping="1"/>
       <limit lower="${llimit}" upper="${ulimit}" effort="${elimit}" velocity="${vlimit}"/>
     </joint>
   </xacro:macro>
