@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: motoman_description
+    relative_path: robots/motomini/motomini_with_gripper_kinectv2.urdf.xacro
+    xacro_args: --inorder
+  SRDF:
+    relative_path: config/motoman_motomini.srdf
+  CONFIG:
+    author_name: Shrutheesh
+    author_email: shrutheesh@shrutheesh.com
+    generated_timestamp: 1590087342

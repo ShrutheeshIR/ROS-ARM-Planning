@@ -1,46 +1,50 @@
-#!/home/olorin/ENV/bin/python
-import roslib
-roslib.load_manifest('tf2_pose')
+import sys
 import rospy
-import math
-import tf
+import moveit_commander
 import geometry_msgs.msg
-from sensor_msgs.msg import Image
-from cv_bridge import CvBridge
 import numpy as np
-import cv2
-import os
+from scipy.spatial.transform import Rotation as R
 
-
-def callback(data, bridge):
-    try:
-        cv_image = bridge.imgmsg_to_cv2(data, desired_encoding="passthrough").astype(np.float32)
-    except CvBridgeError as e:
-        print(e)
-
-    (rows,cols) = cv_image.shape
-    print(rows, cols)
-        
-
-def listener():
-    bridge = CvBridge()
-    listener = tf.TransformListener()
-    image_sub = rospy.Subscriber("/camera/depth/image_raw",Image,callback, bridge)
-    try:
-        (trans,rot) = listener.lookupTransform('/world', '/camera_color_frame', rospy.Time(0))
-        print(trans, rot)        
-    except (tf.LookupException, tf.ConnectivityException, tf.ExtrapolationException):
-        print("NO")
+moveit_commander.roscpp_initialize(sys.argv)
+rospy.init_node('moveitcommander', anonymous=True)
+robot = moveit_commander.RobotCommander()
+# mountgroup = moveit_commander.MoveGroupCommander('Mount')
+# mountgroup.set_joint_value_target([-0.1, 0.4])
+# mountgroup.go()
 
 
 
+# hand_group = moveit_commander.MoveGroupCommander('Hand')
+# poss = np.load('/home/olorin/Desktop/IISc/pose.npy')
+# r = R.from_dcm(poss[:3,:3]).as_quat()
+# print(poss)
+# print(R.from_dcm(poss[:3,:3]).as_euler('xyz'))
+# hand_group.set_joint_value_target([0.015, 0.015])
+# plan2 = hand_group.go()
 
 
-if __name__ == '__main__':
-    rospy.init_node('tf_listener')
-    listener()
-    try:
-        rospy.spin()
-    except KeyboardInterrupt:
-        print("Shutting down")
+arm_group = moveit_commander.MoveGroupCommander('arm')
+# arm_group.set_planning_time(100)
+pose_target = geometry_msgs.msg.Pose()
+# # pose_target.orientation.w = r[3]
+# # pose_target.orientation.x = r[0]
+# # pose_target.orientation.y = r[1]
+# # pose_target.orientation.z = r[2]
+# pose_target.position.x = 0.33
+# pose_target.position.y = 0.10
+# pose_target.position.z = 0.18
+# arm_group.get_pose_target(pose_target)
+print(arm_group.get_current_pose())
+# # # arm_group.set_named_target('DefaultArm')
+# plan1 = arm_group.go(wait=True)
+
+# # hand_group.set_joint_value_target([0.0125, 0.00125])
+# # hand_group.stop
+
+# # hand_group.set_named_target('Close')
+# # print(hand_group.get_current_pose('gripper_finger_link_l'))
+# # plan3 = hand_group.go()
+
+rospy.sleep(2)
+moveit_commander.roscpp_shutdown()
 
