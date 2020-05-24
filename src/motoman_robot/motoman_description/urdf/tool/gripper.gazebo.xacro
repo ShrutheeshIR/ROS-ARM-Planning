@@ -16,18 +16,18 @@
       <material>Gazebo/Black</material>
       <turnGravityOff>false</turnGravityOff>
       <selfCollide>true</selfCollide>
-      <mu1>1.0</mu1>
-      <mu2>1.0</mu2>
-      <maxContacts>100</maxContacts>
+      <mu1>3.0</mu1>
+      <mu2>3.0</mu2>
+      <!-- <maxContacts>100</maxContacts> -->
     </gazebo>
 	
     <gazebo reference="${name}_finger_link_r">
       <material>Gazebo/Black</material>
       <turnGravityOff>false</turnGravityOff>
       <selfCollide>true</selfCollide>
-      <mu1>1.0</mu1>
-      <mu2>1.0</mu2>
-      <maxContacts>100</maxContacts>
+      <mu1>3.0</mu1>
+      <mu2>3.0</mu2>
+      <!-- <maxContacts>100</maxContacts> -->
     </gazebo>
 	
   </xacro:macro>

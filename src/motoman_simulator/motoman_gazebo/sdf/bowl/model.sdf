@@ -15,12 +15,11 @@
 	  </inertia>
       </inertial>
       <collision name="collision">
-        <pose>0 0 0.0175 0 0 0</pose>
+        <!-- <pose>0 0 0.0175 0 0 0</pose> -->
         <geometry>
-          <cylinder>
-            <radius>0.098</radius>
-            <length>0.035</length>
-          </cylinder>
+          <mesh>
+            <uri>model://bowl/meshes/bowl.dae</uri>
+          </mesh>
         </geometry>
       </collision>
       <visual name="visual">

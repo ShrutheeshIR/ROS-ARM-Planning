@@ -14,7 +14,7 @@ robot = moveit_commander.RobotCommander()
 
 
 
-# hand_group = moveit_commander.MoveGroupCommander('Hand')
+# hand_group = moveit_commander.MoveGroupCommander('gripper')
 # poss = np.load('/home/olorin/Desktop/IISc/pose.npy')
 # r = R.from_dcm(poss[:3,:3]).as_quat()
 # print(poss)
@@ -23,27 +23,27 @@ robot = moveit_commander.RobotCommander()
 # plan2 = hand_group.go()
 
 
-arm_group = moveit_commander.MoveGroupCommander('arm')
-# arm_group.set_planning_time(100)
+arm_group = moveit_commander.MoveGroupCommander('motomini')
+arm_group.set_planning_time(100)
 pose_target = geometry_msgs.msg.Pose()
-# # pose_target.orientation.w = r[3]
-# # pose_target.orientation.x = r[0]
-# # pose_target.orientation.y = r[1]
-# # pose_target.orientation.z = r[2]
-# pose_target.position.x = 0.33
-# pose_target.position.y = 0.10
-# pose_target.position.z = 0.18
-# arm_group.get_pose_target(pose_target)
+pose_target.orientation.w = 0.7073883
+pose_target.orientation.x = 0
+pose_target.orientation.y = 0
+pose_target.orientation.z = 0.7068
+pose_target.position.x = 0.25
+pose_target.position.y = 0.0
+pose_target.position.z = 0.18
+arm_group.set_pose_target(pose_target)
 print(arm_group.get_current_pose())
-# # # arm_group.set_named_target('DefaultArm')
-# plan1 = arm_group.go(wait=True)
+# arm_group.set_named_target('random valid')
+plan1 = arm_group.go(wait=True)
 
 # # hand_group.set_joint_value_target([0.0125, 0.00125])
 # # hand_group.stop
 
-# # hand_group.set_named_target('Close')
+# hand_group.set_named_target('close')
 # # print(hand_group.get_current_pose('gripper_finger_link_l'))
-# # plan3 = hand_group.go()
+# plan3 = hand_group.go()
 
 rospy.sleep(2)
 moveit_commander.roscpp_shutdown()

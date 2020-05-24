@@ -28,8 +28,8 @@ joint_state_controller:
 controller_list:
   - name: motomini_controller
     action_ns: follow_joint_trajectory
+    default: True
     type: FollowJointTrajectory
-    default: true
     joints:
       - joint_1_s
       - joint_2_l

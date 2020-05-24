@@ -1,5 +1,5 @@
 controller_list:
-  - name: fake_arm_controller
+  - name: fake_motomini_controller
     joints:
       - joint_1_s
       - joint_2_l
@@ -7,6 +7,3 @@ controller_list:
       - joint_4_r
       - joint_5_b
       - joint_6_t
-  - name: fake_gripper_controller
-    joints:
-      []
