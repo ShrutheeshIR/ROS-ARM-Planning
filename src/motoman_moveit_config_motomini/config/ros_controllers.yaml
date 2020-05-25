@@ -37,3 +37,10 @@ controller_list:
       - joint_4_r
       - joint_5_b
       - joint_6_t
+  - name: gripper_controller
+    action_ns: follow_joint_trajectory
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - gripper_finger_joint_l
+      - gripper_finger_joint_r

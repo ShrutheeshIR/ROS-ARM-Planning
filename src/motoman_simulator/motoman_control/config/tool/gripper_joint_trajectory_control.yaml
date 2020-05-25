@@ -6,4 +6,4 @@ gripper_controller:
   gains:
     gripper_finger_joint_l: {p: 2000.0, d: 1.0}
     gripper_finger_joint_r: {p: 2000.0, d: 1.0}
-
+  allow_partial_joints_goal: true

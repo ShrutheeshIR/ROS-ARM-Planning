@@ -2,7 +2,7 @@
 <robot name="motoman_motomini" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Arguments -->
 
-  <xacro:arg name="load_grasp_fix" default="false"/>
+  <xacro:arg name="load_grasp_fix" default="true"/>
 
   <!-- Include Sensors -->
   <xacro:include filename="$(find motoman_description)/urdf/sensor/kinect.urdf.xacro"/>

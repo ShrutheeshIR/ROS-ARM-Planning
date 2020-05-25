@@ -14,7 +14,7 @@ robot = moveit_commander.RobotCommander()
 
 
 
-# hand_group = moveit_commander.MoveGroupCommander('gripper')
+hand_group = moveit_commander.MoveGroupCommander('gripper')
 # poss = np.load('/home/olorin/Desktop/IISc/pose.npy')
 # r = R.from_dcm(poss[:3,:3]).as_quat()
 # print(poss)
@@ -41,9 +41,9 @@ plan1 = arm_group.go(wait=True)
 # # hand_group.set_joint_value_target([0.0125, 0.00125])
 # # hand_group.stop
 
-# hand_group.set_named_target('close')
+hand_group.set_named_target('open')
 # # print(hand_group.get_current_pose('gripper_finger_link_l'))
-# plan3 = hand_group.go()
+plan3 = hand_group.go()
 
 rospy.sleep(2)
 moveit_commander.roscpp_shutdown()
