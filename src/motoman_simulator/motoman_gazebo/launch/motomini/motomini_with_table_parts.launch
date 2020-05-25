@@ -26,7 +26,7 @@
 
 
   <arg name="xacro_arguments" default="load_grasp_fix:=$(arg load_grasp_fix)"/>
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find motoman_description)/robots/motomini/motomini_with_gripper_kinectv2.urdf.xacro $(arg xacro_arguments)" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find motoman_description)/robots/motomini/motomini_with_gripper_and_mount.urdf.xacro $(arg xacro_arguments)" />
   <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/> -->
 
   <node pkg="gazebo_ros" type="spawn_model" name="spawn_robot" respawn="false" output="screen"

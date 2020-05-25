@@ -2,7 +2,7 @@
 <launch>
   <arg name="paused" default="false"/>
   <arg name="gazebo_gui" default="true"/>
-  <arg name="urdf_path" default="$(find motoman_description)/robots/motomini/motomini_with_gripper_kinectv2.urdf.xacro"/>
+  <arg name="urdf_path" default="$(find motoman_description)/robots/motomini/motomini_with_gripper_and_mount.urdf.xacro"/>
 
   <!-- startup simulated world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
