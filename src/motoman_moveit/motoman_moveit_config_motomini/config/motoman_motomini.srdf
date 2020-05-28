@@ -47,6 +47,14 @@
         <joint name="gripper_finger_joint_l" value="0.002" />
         <joint name="gripper_finger_joint_r" value="0.002" />
     </group_state>
+    <group_state name="oneway" group="Mount">
+        <joint name="bod_base_link" value="-0.7901" />
+        <joint name="link_JOINT_1" value="0.3336" />
+    </group_state>
+    <group_state name="otherway" group="Mount">
+        <joint name="bod_base_link" value="0.7901" />
+        <joint name="link_JOINT_1" value="0.3336" />
+    </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="HandEE" parent_link="link_6_t" group="Hand" parent_group="Arm" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
